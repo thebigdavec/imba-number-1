@@ -1,0 +1,20 @@
+{
+  "name": "imba-number-1",
+  "scripts": {
+    "start": "imba -w server.imba",
+    "build": "imba build server.imba"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.5.1",
+    "express": "^4.17.1",
+    "html-entities": "^2.3.3",
+    "imba": "^2.0.0-alpha.208",
+    "nanoid": "^3.3.4"
+  },
+  "repository": "thebigdavec/imba-number-1",
+  "description": "Imba play time",
+  "version": "0.1.0",
+  "homepage": "https://github.com/thebigdavec/imba-number-1",
+  "author": "Dave Collison (https://github.com/thebigdavec)",
+  "license": "ISC"
+}
