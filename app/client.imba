@@ -1,5 +1,6 @@
 import confetti from 'canvas-confetti'
 import './cover-page'
+import './answers-list'
 import getQuestions from './getQuestions'
 
 global css html
@@ -39,29 +40,6 @@ tag app
 			gap:.5rem
 	css .question--text
 			fw:bold
-	css	.question--answers
-			d:flex
-			flex-wrap:wrap
-			row-gap:.05rem
-			column-gap:.5rem
-	css	.answer
-			p:.5em 1em
-			bd:4px solid white
-			bgc:cooler2
-			border-radius:xl
-			@hover bgc:cooler3
-	css .selected-answer
-			font-style:italic
-			bgc:lilac1
-			box-shadow: 0 0 4px 0 lilac6 inset
-	css .correct-answer
-			bgc:green1
-			box-shadow: 0 0 4px 0 green6 inset
-			font-weight:bold
-	css .selected-answer.correct-answer
-			bgc:green3
-			box-shadow: 0 0 4px 0 green6 inset
-			bd:4px solid green3
 	css .end-actions
 			d:flex
 			mt:2rem
@@ -91,6 +69,13 @@ tag app
 		for answer in question.answers
 			answer.isSelected = answer.text === text
 
+	def selectedAnswer e
+		const question = questions.find do(question)
+			question.id == e.detail.id
+
+		for answer in question.answers
+			answer.isSelected = answer.text === e.detail.text
+
 	def allAnswered
 		questions.every do(question)
 			question.answers.some do(answer)
@@ -118,15 +103,12 @@ tag app
 						for question in questions
 							<div.question>
 								<div.question--text> question.question
-								<div.question--answers>
-									for answer in question.answers
-										<button
-											.answer
-											.selected-answer=answer.isSelected
-											.correct-answer=(answer.isCorrect and showResults?)
-											@click=selectAnswer(answer.text, question.id)
-										>
-											answer.text
+								<answers-list
+									@selectAnswer=selectedAnswer(e)
+									answers=question.answers
+									id=question.id
+									showResults=showResults?
+								>
 						if allAnswered! and not showResults?
 							<div.end-actions>
 								<button.btn @click=checkAnswers> "Check answers"
