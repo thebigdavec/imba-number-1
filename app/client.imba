@@ -42,7 +42,8 @@ tag app
 	css	.question--answers
 			d:flex
 			flex-wrap:wrap
-			g:1rem
+			row-gap:.05rem
+			column-gap:.5rem
 	css	.answer
 			p:.5em 1em
 			bd:4px solid white
