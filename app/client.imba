@@ -62,14 +62,9 @@ tag app
 		loadingQuestions? = false
 		showResults? = false
 
-	def selectAnswer(text, id)
-		const question = questions.find do(question)
-			question.id == id
-
-		for answer in question.answers
-			answer.isSelected = answer.text === text
-
 	def selectedAnswer e
+		if showResults?
+			return
 		const question = questions.find do(question)
 			question.id == e.detail.id
 
